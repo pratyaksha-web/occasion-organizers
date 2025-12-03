@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Occasion Oragnizers — Pastel Pink Gradient (Footer Socials)</title>
+<style>
+  /* ========== Theme variables ========== */
+  :root{
+    --g1: #ff6fa5;  /* gradient start */
+    --g2: #ffa7c9;  /* gradient mid */
+    --g3: #e5c8ff;  /* gradient end */
+    --page-bg: #fff3fa;   /* soft pastel background for middle */
+    --card-bg: #ffffff;   /* white cards */
+    --muted: #6b6b6b;
+    --text: #2b2b2b;
+    --accent: #b33a4b;    /* brand accent */
+    --cta: #ff8fb3;       /* CTA (soft pink) */
+    --shadow: 0 10px 30px rgba(20,20,30,0.06);
+    --radius: 12px;
+
+    /* social card specifics */
+    --social-dark: #262626;
+    --whatsapp: #09c177;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ========== Header (full gradient) ========== */
+  .site-header{
+    background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+    color: white;
+    padding: 14px 16px;
+    box-shadow: 0 6px 20px rgba(230,200,255,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 80;
+  }
+
+  .header-inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    justify-content: space-between;
+  }
+
+  /* logo left */
+  .logo { display:flex; align-items:center; gap:12px; flex:0 0 auto; }
+  .logo img { width:64px; height:64px; object-fit:cover; border-radius:10px; background: rgba(255,255,255,0.12); padding:6px; }
+  .brand { font-weight:800; font-size:1.1rem; color: #fff; letter-spacing:0.3px; }
+
+  /* nav right */
+  nav.primary { display:flex; align-items:center; gap:18px; }
+  nav.primary ul{ list-style:none; display:flex; gap:18px; margin:0; padding:0; align-items:center; }
+  nav.primary a { color: white; font-weight:700; padding:8px 10px; border-radius:8px; transition: background .18s ease; font-size:0.98rem; }
+  nav.primary a:hover { background: rgba(255,255,255,0.12); }
+  nav.primary a.active { background: rgba(255,255,255,0.18); }
+
+  .header-actions{ display:flex; gap:12px; align-items:center; }
+  .btn-cta {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.12);
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:800;
+  }
+  .btn-cta:hover { background: rgba(255,255,255,0.18); transform:translateY(-2px); }
+
+  
+  .hamburger { display:none; width:40px;height:40px;border-radius:8px; background: rgba(255,255,255,0.08); align-items:center;justify-content:center; cursor:pointer; }
+  .hamburger div { width:20px;height:2px;background:white;border-radius:2px;position:relative; }
+  .hamburger div::before, .hamburger div::after { content:""; position:absolute; left:0; width:20px;height:2px;background:white;border-radius:2px; }
+  .hamburger div::before { top:-6px; }
+  .hamburger div::after { top:6px; }
+
+  /* mobile nav panel */
+  .mobile-nav { display:none; position:fixed; top:70px; right:16px; background: white; border-radius:10px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); padding:12px; z-index:200; min-width:180px; }
+  .mobile-nav a { display:block; padding:8px 6px; border-radius:6px; color:var(--text); font-weight:700; }
+  .mobile-nav a:hover { background:#f6f0fb; }
+
+  .top-info {
+    max-width:1200px; margin:10px auto 0; padding:0 20px; display:flex; justify-content:space-between; gap:12px; align-items:center;
+  }
+  .top-info .muted { color: rgba(255,255,255,0.95); font-weight:700; background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); padding:6px 10px; border-radius:8px; }
+  .top-info .social-mini a { background: rgba(255,255,255,0.08); padding:6px 8px; border-radius:8px; color:white; font-weight:700; margin-left:6px; }
+
+  /* ========== Main content ========= */
+  main { max-width:1100px; margin:20px auto; padding:20px; }
+
+  .hero { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+  .card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding:16px; }
+
+  .hero-left h1 { margin:0; color:var(--accent); font-size:1.5rem; }
+  .hero-left p { color:var(--muted); margin:10px 0 0; }
+
+  .cta-row { margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+  .btn-primary { background: linear-gradient(90deg, rgba(255,111,165,0.95), rgba(255,167,201,0.95)); color: white; padding:10px 14px; border-radius:10px; border:none; font-weight:800; cursor:pointer; }
+  .btn-outline { background:transparent; border:2px solid var(--accent); color:var(--accent); padding:8px 12px; border-radius:10px; font-weight:700; }
+
+  .events-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:16px; margin-top:16px; }
+  .event-card { display:flex; flex-direction:column; border-radius:12px; overflow:hidden; background:var(--card-bg); }
+  .event-media { width:100%; height:160px; object-fit:cover; display:block; }
+  .event-body { padding:12px; display:flex; flex-direction:column; gap:8px; }
+  .event-meta { display:flex; justify-content:space-between; color:var(--accent); font-weight:700; }
+
+  .booking { margin-top:12px; }
+  label{ display:block; margin-bottom:6px; color:var(--text); font-weight:600; }
+  input, select, textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #eee; margin-bottom:8px; font-family:inherit; }
+  textarea { min-height:90px; resize:vertical; }
+
+  .test-list { display:flex; flex-direction:column; gap:10px; }
+  .test { background: linear-gradient(180deg, #fff, #fff7fb); padding:12px; border-left:4px solid var(--g2); border-radius:8px; }
+
+  .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:10px; margin-top:12px; }
+  .gallery img { width:100%; height:110px; object-fit:cover; border-radius:8px; }
+
+  /* ========== Social card (moved to footer) styles - keep white card for contrast ========= */
+  .footer-social-card { background: white; border-radius:14px; padding:14px 16px; display:flex; gap:14px; align-items:center; box-shadow: 0 10px 30px rgba(20,20,30,0.06); }
+  .social-btn { width:48px; height:48px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:var(--social-dark); color:white; cursor:pointer; position:relative; border:none; }
+  .social-btn svg { width:18px; height:18px; fill:white; }
+  .social-btn.whatsapp { background: var(--whatsapp); }
+
+  .social-btn[data-title]:hover::after {
+    content: attr(data-title);
+    position:absolute; bottom:-36px; left:50%; transform:translateX(-50%);
+    background:#222; color:white; padding:6px 8px; font-size:0.8rem; border-radius:6px; white-space:nowrap; box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  }
+
+  /* ========== Footer gradient ========= */
+  footer {
+    background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+    color: white;
+    padding:26px 12px;
+    margin-top:28px;
+  }
+  footer .inner { max-width:1100px; margin:0 auto; display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  footer .info { color: rgba(255,255,255,0.95); font-weight:700; }
+  footer .small { color: rgba(230,230,255,0.9); }
+
+  @media (max-width:980px){
+    .hero { grid-template-columns: 1fr; }
+    .hamburger { display:flex; }
+    nav.primary ul { display:none; }
+    .footer-social-card { margin-top:12px; }
+    .header-inner { gap:10px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header (gradient, logo left, nav right) -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo" aria-hidden="false">
+        <!-- replace src with your logo path -->
+        <img src="logo.jpg" alt="ADDY Events logo">
+        <div class="brand">Occasion Oragnizers</div>
+      </div>
+
+      <!-- desktop nav -->
+      <nav class="primary" aria-label="Main navigation">
+        <ul>
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn-cta" href="https://wa.me/919140058489" target="_blank" rel="noopener">Let's Discuss</a>
+
+        <!-- hamburger -->
+        <button class="hamburger" aria-label="Toggle menu" id="hambBtn">
+          <div></div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- top info thin row (below header) - text made white for visibility -->
+  <div style="max-width:1200px;margin:10px auto 0;padding:0 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;">
+    <div style="color:rgba(0,0,0,0.45); background: rgba(255,255,255,0.9); padding:6px 10px; border-radius:8px; font-weight:700;">📍 Greater Noida • (+91) 9140044 58489 • info@occasioorganizers.in</div>
+    <div style="display:flex;gap:8px;">
+      <a href="#" style="background:rgba(255,255,255,0.12);padding:6px 8px;border-radius:8px;color:white;font-weight:700">YT</a>
+      <a href="#" style="background:rgba(255,255,255,0.12);padding:6px 8px;border-radius:8px;color:white;font-weight:700">f</a>
+      <a href="#" style="background:rgba(255,255,255,0.12);padding:6px 8px;border-radius:8px;color:white;font-weight:700">ig</a>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="card hero-left">
+        <h1>We design memorable events — you enjoy them.</h1>
+        <p class="muted">Occasion Oragnizers plans and executes weddings, conferences, concerts and private experiences with attention to detail, vetted vendors and on-day coordination.</p>
+
+        <div class="cta-row">
+          <button class="btn-primary" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Request Booking</button>
+          <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
+        </div>
+
+        <div style="margin-top:14px;">
+          <strong>Quick filters</strong>
+          <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+            <input id="searchInput" type="text" placeholder="Search events (wedding, music...)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eee;">
+            <select id="typeFilter" style="padding:10px;border-radius:8px;border:1px solid #eee;">
+              <option value="">All</option><option>Wedding</option><option>Conference</option><option>Concert</option><option>Private</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card aside-card" style="min-width:260px;">
+        <h3 style="margin:0;color:var(--accent)">Why choose us?</h3>
+        <ul style="color:var(--muted);margin-top:8px;padding-left:18px;">
+          <li>Dedicated project manager</li>
+          <li>Vetted local vendors</li>
+          <li>Transparent pricing & timelines</li>
+        </ul>
+        <div style="margin-top:12px">
+          <strong>Ready to start?</strong>
+          <p class="muted" style="margin:6px 0 0;">Typical planning: 4–12 weeks. We support last-minute requests too.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="margin-top:22px">
+      <h2 style="margin:0 0 8px; color:var(--accent)">Our Services</h2>
+      <p class="muted">Full-service event management across categories.</p>
+
+      <div class="events-grid" style="margin-top:12px;">
+        <article class="event-card">
+          <img class="event-media" src="wedding.jpg" alt="Wedding">
+          <div class="event-body">
+            <div class="event-meta"><span>Weddings</span><span>Full planning</span></div>
+            <div><strong>Elegant weddings & celebrations</strong></div>
+            <div class="event-desc">Venue selection, decor, vendors and hospitality.</div>
+          </div>
+        </article>
+
+        <article class="event-card">
+          <img class="event-media" src="conference.jpg" alt="Conference">
+          <div class="event-body">
+            <div class="event-meta"><span>Conferences</span><span>Corporate</span></div>
+            <div><strong>Corporate conferences & launches</strong></div>
+            <div class="event-desc">AV, stage, seating plans and logistics.</div>
+          </div>
+        </article>
+
+        <article class="event-card">
+          <img class="event-media" src="concert.jpg" alt="Concert">
+          <div class="event-body">
+            <div class="event-meta"><span>Concerts</span><span>Outdoor/Indoor</span></div>
+            <div><strong>Music festivals and shows</strong></div>
+            <div class="event-desc">Artist coordination, FOH, staging and crowd management.</div>
+          </div>
+        </article>
+
+        <article class="event-card">
+          <img class="event-media" src="private-party.jpg" alt="Private Party">
+          <div class="event-body">
+            <div class="event-meta"><span>Private</span><span>Custom</span></div>
+            <div><strong>Birthday, anniversaries & private events</strong></div>
+            <div class="event-desc">Themed decor, entertainment and catering.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="book" style="margin-top:22px">
+      <h2 style="margin:0 0 8px; color:var(--accent)">Request a Booking</h2>
+      <div class="card booking">
+        <form id="bookingForm">
+          <label for="bname">Full name</label>
+          <input id="bname" type="text" placeholder="Your name" required>
+
+          <label for="bemail">Email</label>
+          <input id="bemail" type="email" placeholder="you@example.com" required>
+
+          <div style="display:flex;gap:8px;">
+            <div style="flex:1">
+              <label for="bdate">Date</label>
+              <input id="bdate" type="date" required>
+            </div>
+            <div style="flex:1">
+              <label for="btime">Time</label>
+              <input id="btime" type="time" required>
+            </div>
+          </div>
+
+          <label for="btype">Event type</label>
+          <select id="btype">
+            <option>Wedding</option><option>Conference</option><option>Concert</option><option>Private</option><option>Other</option>
+          </select>
+
+          <label for="bnotes">Notes (guest count, location)</label>
+          <textarea id="bnotes" placeholder="Any important details"></textarea>
+
+          <button class="btn-primary" type="submit" style="margin-top:6px;">Send Request</button>
+          <p id="bookingMsg" class="muted" style="margin-top:8px;"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" style="margin-top:22px">
+      <h2 style="margin:0 0 8px; color:var(--accent)">Testimonials</h2>
+      <div class="card">
+        <div class="test-list" id="testList">
+          <div class="test"><strong>Neha — Wedding</strong><div class="small">★★★★★</div><div class="small muted" style="margin-top:8px">Amazing! Everything was perfect.</div></div>
+          <div class="test"><strong>Rohit — Conference</strong><div class="small">★★★★☆</div><div class="small muted" style="margin-top:8px">Great organization and support.</div></div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <h4 style="margin:0 0 8px;">Add your testimonial</h4>
+          <form id="testForm">
+            <input id="tname" placeholder="Your name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;">
+            <input id="ttype" placeholder="Event type (wedding/conference)" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;">
+            <select id="trating" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;">
+              <option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option>
+            </select>
+            <textarea id="ttext" placeholder="Your message" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;"></textarea>
+            <button class="btn-outline" type="submit" style="margin-top:8px;">Submit</button>
+            <p id="testMsg" class="muted" style="margin-top:8px"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="margin-top:22px">
+      <h2 style="margin:0 0 8px; color:var(--accent)">Gallery</h2>
+      <p class="muted">A few highlights — images are cropped to the same size for tidy layout.</p>
+      <div class="gallery">
+        <img src="gallery1.jpg" alt="">
+        <img src="gallery2.jpg" alt="">
+        <img src="gallery3.jpg" alt="">
+        <img src="gallery4.jpg" alt="">
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="margin-top:22px">
+      <h2 style="margin:0 0 8px; color:var(--accent)">Contact & Office</h2>
+      <div class="card" style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;">
+          <p style="margin:0"><strong>Phone</strong><br> (+91) 91400 58489</p>
+          <p style="margin:12px 0 0"><strong>Email</strong><br> info@occasioorganizers.in</p>
+          <p style="margin:12px 0 0"><strong>Office</strong><br> Greater Noida, Uttar Pradesh</p>
+        </div>
+
+        <div style="flex:1;min-width:260px;">
+          <form id="contactForm">
+            <input id="cname" placeholder="Your name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;">
+            <input id="cemail" placeholder="Email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;">
+            <textarea id="cmsg" placeholder="Tell us about your event" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;min-height:80px"></textarea>
+            <button class="btn-primary" type="submit" style="margin-top:8px;">Send Message</button>
+            <p id="contactMsg" class="muted" style="margin-top:8px"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (same gradient as header) with social card inside -->
+  <footer>
+    <div class="inner">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+        <div style="font-weight:800;font-size:1.05rem">Ocassion Oragnizers</div>
+
+        <!-- Social card placed in footer (left) -->
+        <div class="footer-social-card" role="group" aria-label="Social links">
+          <!-- Instagram -->
+          <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM17.8 6.5a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2zM20 7.8c0-.6-.1-1.2-.2-1.7-.1-.5-.3-.9-.5-1.3-.2-.4-.5-.7-.9-.9-.4-.2-.8-.4-1.3-.5-.5-.1-1.1-.2-1.7-.2H9.6c-.6 0-1.2.1-1.7.2-.5.1-.9.3-1.3.5-.4.2-.7.5-.9.9-.2.4-.4.8-.5 1.3-.1.5-.2 1.1-.2 1.7v4.8c0 .6.1 1.2.2 1.7.1.5.3.9.5 1.3.2.4.5.7.9.9.4.2.8.4 1.3.5.5.1 1.1.2 1.7.2h4.8c.6 0 1.2-.1 1.7-.2.5-.1.9-.3 1.3-.5.4-.2.7-.5.9-.9.2-.4.4-.8.5-1.3.1-.5.2-1.1.2-1.7V7.8z"/>
+            </svg>
+          </a>
+
+          <!-- Twitter -->
+          <a class="social-btn twitter" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" title="Twitter">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22 5.9c-.6.3-1.2.5-1.9.6.7-.5 1.2-1.2 1.5-2-.7.4-1.5.6-2.3.8C18.8 5 17.8 4.5 17 3.7c-.8-.8-1.4-1.9-1.7-3.1-1.4 1.1-2.8 1.8-4.4 2 0 .2 0 .4 0 .6C8.7 4.3 6 3.6 4 2.2c-.5.9-.4 2 .1 2.9-.6 0-1.2-.1-1.7-.4 0 1.4.9 2.6 2.2 2.9-.5.1-1.1.1-1.6.1.4 1.3 1.6 2.3 3.1 2.4-1.1.9-2.5 1.3-4 1.3.7.9 1.8 1.5 3 1.5-1.1.8-2.5 1.3-4 1.3 1.4.9 3 1.4 4.7 1.4 5.6 0 8.6-4.7 8.6-8.8v-.4c.6-.5 1.1-1.1 1.5-1.8-.6.3-1.2.5-1.9.6z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a class="social-btn linkedin" href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8.98h5V24H0zM8.99 8.98h4.79v2.07h.07c.67-1.27 2.31-2.6 4.75-2.6 5.08 0 6.02 3.34 6.02 7.69V24h-5v-7.6c0-1.81-.03-4.13-2.51-4.13-2.51 0-2.89 1.95-2.89 3.99V24h-5V8.98z"/>
+            </svg>
+          </a>
+
+          <!-- WhatsApp -->
+          <a class="social-btn whatsapp" href="https://wa.me/919140058489" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" data-title="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20.5 3.5A10.5 10.5 0 0 0 3 20.9L2 22.5l1.7-.4A10.5 10.5 0 1 0 20.5 3.5zm-9.9 15.2c-1.9 0-3.5-.5-4.9-1.3l-.3-.2-3 0 .8-2.9-.2-.3A8.1 8.1 0 1 1 10.6 19zM17.6 14.3c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.2-.5.1-.2.2-.6.7-.7.9-.1.2-.2.2-.4.1-.9-.4-1.7-1.5-2.2-2.9-.2-.5.2-.4.5-1 .3-.5.1-.8-.1-.9-.3-.1-.4-.1-.6-.1-.2 0-.5.1-.8.4-.3.4-1.1 1-1.1 2.5s1.1 3 1.3 3.2c.2.2 2.3 3.3 5.6 4.6 1.2.5 2 .4 2.8.3.9-.2 2.8-1.1 3.2-2.2.4-1.1.4-2 .3-2.2-.1-.2-.3-.3-.5-.4z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div style="text-align:right;">
+        <div class="info">© <span id="year"></span> Ocassion Oragnizers</div>
+        <div class="small">Greater Noida • (+91) 9140044 58489 • info@occasioorganizers.in</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // Set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav toggle
+  const hambBtn = document.getElementById('hambBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  function toggleMobileNav(){
+    if(!mobileNav) return;
+    mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+  }
+  if(hambBtn) hambBtn.addEventListener('click', toggleMobileNav);
+
+  // Filter events (search + type)
+  const searchInput = document.getElementById('searchInput');
+  const typeFilter = document.getElementById('typeFilter');
+  function filterEvents(){
+    const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const t = typeFilter ? typeFilter.value : '';
+    const cards = document.querySelectorAll('.event-card');
+    cards.forEach(card=>{
+      const txt = (card.textContent || '').toLowerCase();
+      const matchesQ = !q || txt.includes(q);
+      const matchesT = !t || card.querySelector('.event-meta')?.textContent.includes(t);
+      card.style.display = (matchesQ && matchesT) ? '' : 'none';
+    });
+  }
+  if(searchInput) searchInput.addEventListener('input', filterEvents);
+  if(typeFilter) typeFilter.addEventListener('change', filterEvents);
+
+  // Booking form (demo)
+  const bookingForm = document.getElementById('bookingForm');
+  if(bookingForm){
+    bookingForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('bname').value.trim();
+      const email = document.getElementById('bemail').value.trim();
+      const date = document.getElementById('bdate').value;
+      const time = document.getElementById('btime').value;
+      if(!name || !email || !date || !time){
+        document.getElementById('bookingMsg').textContent = 'Please complete name, email, date and time.';
+        return;
+      }
+      document.getElementById('bookingMsg').textContent = `Thanks ${name}! Request for ${date} at ${time} received. We'll contact you at ${email}.`;
+      setTimeout(()=> bookingForm.reset(), 900);
+    });
+  }
+
+  // Testimonials with localStorage
+  const TEST_KEY = 'addy_testimonials_v1';
+  const testList = document.getElementById('testList');
+  function loadTestimonials(){
+    const raw = localStorage.getItem(TEST_KEY);
+    if(!raw) return;
+    try{
+      const arr = JSON.parse(raw);
+      arr.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'test';
+        div.innerHTML = `<strong>${escapeHtml(t.name)}${t.type ? ' — ' + escapeHtml(t.type) : ''}</strong><div class="small">${'★'.repeat(t.rating) + '☆'.repeat(5-t.rating)}</div><div class="small muted" style="margin-top:8px">${escapeHtml(t.text)}</div>`;
+        testList.insertBefore(div, testList.firstChild);
+      });
+    }catch(e){}
+  }
+  function saveTestimonial(obj){
+    const raw = localStorage.getItem(TEST_KEY);
+    let arr = raw ? JSON.parse(raw) : [];
+    arr.unshift(obj);
+    arr = arr.slice(0,20);
+    localStorage.setItem(TEST_KEY, JSON.stringify(arr));
+  }
+  const testForm = document.getElementById('testForm');
+  if(testForm){
+    testForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('tname').value.trim();
+      const type = document.getElementById('ttype').value.trim();
+      const rating = Number(document.getElementById('trating').value) || 5;
+      const text = document.getElementById('ttext').value.trim();
+      if(!name || !text){ document.getElementById('testMsg').textContent = 'Please add name and message.'; return; }
+      const obj = {name, type, rating, text};
+      saveTestimonial(obj);
+      const div = document.createElement('div');
+      div.className = 'test';
+      div.innerHTML = `<strong>${escapeHtml(name)}${type ? ' — ' + escapeHtml(type) : ''}</strong><div class="small">${'★'.repeat(rating) + '☆'.repeat(5-rating)}</div><div class="small muted" style="margin-top:8px">${escapeHtml(text)}</div>`;
+      testList.insertBefore(div, testList.firstChild);
+      document.getElementById('testMsg').textContent = 'Thanks for sharing!';
+      setTimeout(()=>{ testForm.reset(); document.getElementById('testMsg').textContent=''; },900);
+    });
+  }
+
+  // Contact form (demo)
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const msg = document.getElementById('cmsg').value.trim();
+      if(!name || !email || !msg){ document.getElementById('contactMsg').textContent = 'Please fill all fields.'; return; }
+      document.getElementById('contactMsg').textContent = `Thanks ${name}! We received your message. (Demo)`;
+      setTimeout(()=> contactForm.reset(), 900);
+    });
+  }
+
+  // small helper
+  function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  loadTestimonials();
+  filterEvents();
+</script>
+</body>
+</html>
+
+
+
+
